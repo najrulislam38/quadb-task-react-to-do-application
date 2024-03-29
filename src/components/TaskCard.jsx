@@ -1,10 +1,7 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 const TaskCard = () => {
-  // const [isOpen, setIsOpen] = useState(false);
-  // console.log(task);
   const task = {
     id: 1,
     status: "pending",
