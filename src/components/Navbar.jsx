@@ -10,7 +10,7 @@ const Navbar = () => {
           <div>
             <img src={logo} alt="Logo" className="w-36" />
           </div>
-          <div className="bg-primary hover:bg-secondary/80 duration-300 text-white rounded-full p-2">
+          <div className="bg-primary hover:bg-secondary/90 duration-300 text-white rounded-full p-2">
             <UserIcon className="h-6 w-6 " />
           </div>
         </div>

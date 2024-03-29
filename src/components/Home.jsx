@@ -1,4 +1,5 @@
 import Container from "./Container";
+import TaskList from "./TaskList";
 
 const Home = () => {
   return (
@@ -10,13 +11,13 @@ const Home = () => {
             <h3 className="text-2xl">To Do Application</h3>
             {/* add Task section */}
             <div className="">
-              <button className="px-4 py-1 font-medium bg-primary text-white relative overflow-hidden group z-10 duration-300 hover:bg-primary/95 rounded-sm active:scale-90">
+              <button className="px-4 py-1 font-medium bg-primary text-white relative overflow-hidden group z-10 duration-300 hover:bg-secondary/90 rounded-sm active:scale-90">
                 Add New Task
               </button>
             </div>
           </div>
           {/* tasks section */}
-          {/* <Tasks /> */}
+          <TaskList />
         </div>
       </Container>
     </section>
