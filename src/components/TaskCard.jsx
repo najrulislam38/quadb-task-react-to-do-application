@@ -30,8 +30,8 @@ const TaskCard = () => {
           {task?.assignee && `@${task?.assignee}`}
         </h3>
 
-        <button className="border p-0.5 rounded ml-3">
-          <TrashIcon className="w-5 h-5 text-red-500 " />
+        <button className="border bg-transparent  duration-300 p-0.5 rounded ml-3">
+          <TrashIcon className="w-6 h-6 text-red-500 " />
         </button>
       </div>
       <button className="px-3 py-1 mt-3 font-medium text-sm bg-primary text-white  duration-300 hover:bg-secondary/90 rounded-sm active:scale-90">
