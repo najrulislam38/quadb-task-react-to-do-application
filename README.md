@@ -1,8 +1,3 @@
-# React + Vite
+### Project run guidelines
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+First, clone the project repository from GitHub. After cloning, open the project file in the code editor. Open the terminal in that file and give the "npm run dev" command. This command will run on localhost. If you open the link of that localhost in the browser, the web page will open. Clicking on the "Add New Task" button will open a modal. After setting the title, description, team, assignee and priority in the model, the task will be added by clicking on the Add Task button. Used Redux toolkit and localhost for data store. If you add data in the initial state, it will be added to the progress section, click on the update to complete button, the status of the task will be updated and it will be added to the complete task section. To delete the data in the progress section, it will be added to the deferred section. A pop up will appear if you click on the task's trash icon in the Complete and Deferred section. Clicking on the delete button will delete it.
