@@ -12,11 +12,15 @@ const AddNewTask = ({ isOpen, setIsOpen }) => {
     reset,
   } = useForm();
 
+  // get today
+  const date = new Date().toISOString().split("T")[0];
+
+  // redux useDispatch
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    dispatch(addTask(data));
-    // reset();
+    dispatch(addTask({ date: date, ...data }));
+    reset();
   };
 
   return (
@@ -36,14 +40,13 @@ const AddNewTask = ({ isOpen, setIsOpen }) => {
                 {...register("title", {
                   required: true,
                   formState: { errors },
-                  maxLength: 20,
                 })}
                 className="rounded w-2/3 py-1 focus:border-gray-500  bg-gray-200 focus:bg-white"
               />
             </div>
             {errors.title && (
               <p className="text-sm text-red-500 text-right ">
-                Title field is required amd most have less or equal 20 letters.
+                Title field is required.
               </p>
             )}
             {/* description field */}
@@ -119,9 +122,9 @@ const AddNewTask = ({ isOpen, setIsOpen }) => {
                 })}
                 className=" w-2/3 py-1 focus:border-gray-500 rounded bg-gray-200 focus:bg-white"
               >
-                <option value="p0">P0</option>
-                <option value="p1">P1</option>
-                <option value="p2">P2</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
               </select>
             </div>
             {errors.priority && (

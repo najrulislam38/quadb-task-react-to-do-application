@@ -1,6 +1,10 @@
 import TaskCard from "./TaskCard";
+import { useSelector } from "react-redux";
 
 const TaskList = () => {
+  const { tasks } = useSelector((state) => state?.tasks || []);
+  console.log(tasks);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5">
       {/* In progress tasks */}
@@ -9,7 +13,9 @@ const TaskList = () => {
           In Progress
         </h3>
         <div>
-          <TaskCard />
+          {tasks?.map((task) => (
+            <TaskCard key={task.id} task={task}></TaskCard>
+          ))}
         </div>
       </div>
       {/* completed tasks */}

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { loadState } from "../localStorage/localStorage";
 
 const initialState = {
   tasks: [],
@@ -6,7 +7,7 @@ const initialState = {
 
 const tasksSlice = createSlice({
   name: "taskSlice",
-  initialState,
+  initialState: loadState() || initialState,
   reducers: {
     addTask: (state, { payload }) => {
       if (state?.tasks.length === 0) {
@@ -20,9 +21,12 @@ const tasksSlice = createSlice({
         });
       }
     },
+    deleteTask: (state, action) => {
+      return state.filter((task) => task.id !== action.payload);
+    },
   },
 });
 
-export const { addTask } = tasksSlice.actions;
+export const { addTask, deleteTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;
