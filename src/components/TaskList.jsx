@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
 import TaskCard from "./TaskCard";
 import { useSelector } from "react-redux";
 
 const TaskList = () => {
   const { tasks } = useSelector((state) => state?.tasks || []);
   console.log(tasks);
+  const [progressTask, setProgressTask] = useState([]);
+  const [completeTask, setCompleteTask] = useState([]);
+  const [deferredTask, setDeferredTask] = useState([]);
+
+  useEffect(() => {
+    const getProgressTask = tasks?.filter(
+      (task) => task.status === "inProgress"
+    );
+    const getCompleteTask = tasks?.filter((task) => task.status === "complete");
+    const getDeferredTask = tasks?.filter((task) => task.status === "deferred");
+    setCompleteTask(getCompleteTask);
+    setProgressTask(getProgressTask);
+    setDeferredTask(getDeferredTask);
+  }, [tasks]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-5">
@@ -13,7 +28,7 @@ const TaskList = () => {
           In Progress
         </h3>
         <div>
-          {tasks?.map((task) => (
+          {progressTask?.map((task) => (
             <TaskCard key={task.id} task={task}></TaskCard>
           ))}
         </div>
@@ -24,7 +39,9 @@ const TaskList = () => {
           Completed
         </h3>
         <div>
-          <TaskCard />
+          {completeTask?.map((task) => (
+            <TaskCard key={task.id} task={task}></TaskCard>
+          ))}
         </div>
       </div>
 
@@ -34,7 +51,9 @@ const TaskList = () => {
           Deferred
         </h3>
         <div>
-          <TaskCard />
+          {deferredTask?.map((task) => (
+            <TaskCard key={task.id} task={task}></TaskCard>
+          ))}
         </div>
       </div>
     </div>

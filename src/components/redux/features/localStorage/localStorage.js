@@ -1,3 +1,4 @@
+//get  data from localStorage
 export const loadState = () => {
   try {
     const loadState = localStorage.getItem("tasks");
@@ -11,9 +12,10 @@ export const loadState = () => {
   }
 };
 
+// Save data on the local storage.
 export const saveState = (state) => {
   try {
-    console.log(state);
+    // console.log(state);
     const saveData = JSON.stringify(state);
     localStorage.setItem("tasks", saveData);
   } catch (err) {

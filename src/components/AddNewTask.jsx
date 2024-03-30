@@ -21,6 +21,7 @@ const AddNewTask = ({ isOpen, setIsOpen }) => {
   const onSubmit = (data) => {
     dispatch(addTask({ date: date, ...data }));
     reset();
+    setIsOpen(!isOpen);
   };
 
   return (
