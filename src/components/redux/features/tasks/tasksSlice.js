@@ -21,12 +21,12 @@ const tasksSlice = createSlice({
         });
       }
     },
-    deleteTask: (state, action) => {
-      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    deleteTask: (state, { payload }) => {
+      state.tasks = state.tasks.filter((task) => task.id !== payload);
     },
     updateStatus: (state, { payload }) => {
-      const target = state.tasks.find((task) => task.id === payload);
-      target.status = "complete";
+      const target = state.tasks.find((task) => task.id === payload?.id);
+      target.status = payload?.status;
     },
   },
 });

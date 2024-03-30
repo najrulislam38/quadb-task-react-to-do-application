@@ -3,6 +3,7 @@ import Modal from "./ui/Modal";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { addTask } from "./redux/features/tasks/tasksSlice";
+import Swal from "sweetalert2";
 
 const AddNewTask = ({ isOpen, setIsOpen }) => {
   const {
@@ -22,6 +23,11 @@ const AddNewTask = ({ isOpen, setIsOpen }) => {
     dispatch(addTask({ date: date, ...data }));
     reset();
     setIsOpen(!isOpen);
+    Swal.fire({
+      title: "Successful",
+      text: "Task added successful.",
+      icon: "success",
+    });
   };
 
   return (

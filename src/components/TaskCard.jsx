@@ -2,12 +2,30 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { deleteTask, updateStatus } from "./redux/features/tasks/tasksSlice";
+import Swal from "sweetalert2";
 
 const TaskCard = ({ task }) => {
   const dispatch = useDispatch();
 
   const handleDeleteTask = (taskId) => {
-    dispatch(deleteTask(taskId));
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this task!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteTask(taskId));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your task has been deleted.",
+          icon: "success",
+        });
+      }
+    });
   };
   return (
     <div className="bg-gray-100 rounded-md p-4 m-3">
@@ -29,16 +47,29 @@ const TaskCard = ({ task }) => {
       </h3>
       <div className="flex justify-between items-center relative my-1">
         <p className="text-sm font-medium">Date: {task?.date}</p>
-        <button
-          onClick={() => handleDeleteTask(task?.id)}
-          className="border bg-transparent  duration-300 p-0.5 rounded ml-3"
-        >
-          <TrashIcon className="w-6 h-6 text-red-500 " />
-        </button>
+        {task?.status === "inProgress" ? (
+          <button
+            onClick={() =>
+              dispatch(updateStatus({ id: task?.id, status: "deferred" }))
+            }
+            className="border bg-transparent  duration-300 p-0.5 rounded ml-3"
+          >
+            <TrashIcon className="w-6 h-6 text-red-500 " />
+          </button>
+        ) : (
+          <button
+            onClick={() => handleDeleteTask(task?.id)}
+            className="border bg-transparent  duration-300 p-0.5 rounded ml-3"
+          >
+            <TrashIcon className="w-6 h-6 text-red-500 " />
+          </button>
+        )}
       </div>
       {task?.status === "inProgress" && (
         <button
-          onClick={() => dispatch(updateStatus(task?.id))}
+          onClick={() =>
+            dispatch(updateStatus({ id: task?.id, status: "complete" }))
+          }
           className="px-3 py-1 mt-3 font-medium text-sm bg-primary text-white  duration-300 hover:bg-secondary/90 rounded-sm active:scale-90"
         >
           Change To Complete
